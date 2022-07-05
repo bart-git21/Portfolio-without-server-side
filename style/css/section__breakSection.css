@@ -1,0 +1,21 @@
+section.breakSection {
+  height: 100vh;
+  background-image: url(../images/background.png);
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+section.breakSection::before {
+  width: 60%;
+  content: attr(alt);
+  font-size: 6vw;
+  font-weight: 900;
+  align-self: center;
+  text-align: center;
+  position: sticky;
+  top: 0%;
+  transform: translate(0);
+}

@@ -1,0 +1,73 @@
+
+@import "mixins";
+
+section.dragDrop {
+    min-height: 100vh;
+    margin: 10px 0;
+    color: $text-color;
+
+    // h1 {
+    //     font-size: 4vw;
+    // }
+
+    .wrapper {
+        display: flex;
+        justify-content: center;
+        padding: 5px;
+
+        .imageBox {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin: 3px;
+            padding: 5px;
+            height: 15vw;
+            flex-basis: calc(100% / 5);
+            border: 1px solid #bbb;
+
+            &:hover {
+                border: 1px solid #555;
+                box-shadow: 2px 2px 10px $shadow-color;
+            }
+        
+            img {
+                max-width: 100%;
+                height: 100%;
+                object-fit: cover;
+                cursor: move;
+            }
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            width: 300px;
+            height: 18vw;
+            margin: 3px;
+            border: 1px solid #bbb;
+
+            &:hover {
+                border: 1px solid #555;
+                box-shadow: 2px 2px 10px $shadow-color;
+            }
+        
+            &.over {
+                border: 1px solid $shadow-active-color;
+                box-shadow: 2px 2px 10px $shadow-active-color;
+            }
+        }
+        
+        &.dragDrop__catBreeds {
+            font-size: 1.8vw;
+            text-align: center;
+        }
+
+    }
+
+    .dragDrop__startBtn {
+        margin: 0 auto;
+    }
+}
+
+
+        

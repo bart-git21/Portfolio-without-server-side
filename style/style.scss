@@ -1,0 +1,35 @@
+@import "blocks/_variables.scss";
+@import "blocks/h.scss";
+@import "blocks/section__breakSection.scss";
+@import "blocks/section__game__dragNDrop.scss";
+@import "blocks/section__game__guessword.scss";
+@import "blocks/section__game__moveDot.scss";
+
+*,
+*:before,
+*:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    background-color: $bg-color;
+}
+
+main {
+    width: 80%;
+    margin: 0 auto;
+}
+
+section {
+    background-attachment: fixed;
+    max-width: 100%;
+}
+
+
+        
