@@ -8,11 +8,6 @@ fetch(url__MoveDot)
 function gameMoveDot() {
     let dot__scene = document.querySelector(".dot__scene");
     
-    function createCircle() {
-        let circle = document.createElement("div");
-        return circle;
-    }
-
     let dotCounter = 0;
     class Dot {
         constructor(title, xCoord, yCoord, color, speed) {
@@ -21,10 +16,14 @@ function gameMoveDot() {
             this.yCoord = yCoord;
             this.color = color;
             this.speed = speed;
-            this.myCircle = createCircle();
+            // this.myCircle = document.createElement("div");
+            this.myCircle = document.createElement("input");
         }
 
         draw() {
+            this.myCircle.setAttribute("input", "text");
+            // this.myCircle.style.appearance = "none";
+
             this.myCircle.classList = "dot";
             this.myCircle.title = dotCounter;
             this.myCircle.style.backgroundColor = this.color;
@@ -78,6 +77,7 @@ function gameMoveDot() {
         if ([...this.classList].includes("pulseDot")) {
             activeDot = null;
             this.classList.remove("pulseDot");
+            this.removeEventListener("keydown", moveDotByKeyboard);
         }
         else {
             activeDot = circles[this.title-1];
@@ -86,24 +86,10 @@ function gameMoveDot() {
                 dots[i].classList.remove("pulseDot");
             }
             this.classList.add("pulseDot");
+            this.style.caretColor = window.getComputedStyle(this).backgroundColor;
+            this.style.outline = "none";
+            this.addEventListener("keydown", moveDotByKeyboard);
         }
-
-        // let dots = document.querySelectorAll(".dot");
-        // // если выбрать ту же точку - она перестанет моргать и перестанет двигаться
-        // if([...e.target.classList].find(e=>e=="pulseDot")) {
-        //     e.target.classList.remove("pulseDot");
-        //     activeDot = null;
-        // }
-        // // если выбрать другую точку - предыдущая вернет первоначальный вид, а данная начнет моргать и двигаться
-        // else {
-        //     for (let i = 0; i<circles.length; i++) {
-        //         dots[i].style.backgroundColor = circles[i].color;
-        //         dots[i].classList.remove("pulseDot");
-        //     }
-        //     e.target.classList.toggle("pulseDot");
-        //     e.target.style.backgroundColor = null;
-        //     activeDot = circles.find(elem=> elem.title === +e.target.title);
-        // };
     }
 
     // =========================== move ==========================================
@@ -112,10 +98,37 @@ function gameMoveDot() {
     document.querySelector(".move-up").addEventListener("click", ()=>activeDot.moveUp());
     document.querySelector(".move-down").addEventListener("click", ()=>activeDot.moveDown());
 
-    document.querySelector("html").addEventListener("keydown", (e) => {
-        if (e.key === "ArrowRight") activeDot.moveRight()
-        else if (e.key === "ArrowLeft") activeDot.moveLeft()
-        else if (e.key === "ArrowUp") activeDot.moveUp()
-        else if (e.key === "ArrowDown") activeDot.moveDown()
-    })
+    function moveDotByKeyboard (e) {
+        console.log();
+        switch (e.key) {
+            case "ArrowRight":
+                activeDot.moveRight();
+                break;
+            case "ArrowLeft":
+                activeDot.moveLeft();
+                break;
+            case "ArrowUp":
+                activeDot.moveUp();
+                break;
+            case "ArrowDown":
+                activeDot.moveDown();
+                break;
+        }
+    }
+    // document.querySelector(".html").addEventListener("keydown", (e) => {
+    //     console.log(1);
+    //     switch (e.key) {
+    //         case "ArrowRight":
+    //             activeDot.moveRight();
+    //             break;
+    //         case "ArrowLeft":
+    //             activeDot.moveLeft();
+    //             break;
+    //         case "ArrowUp":
+    //             activeDot.moveUp();
+    //             break;
+    //         default: 
+    //             activeDot.moveDown();
+    //     }
+    // })
 }
